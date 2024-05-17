@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Your robot is"
+        android:textColor="@color/black"
+        android:textSize="38dp"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_W"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="35dp"
+        android:background="@drawable/btn_shape"
+        android:src="@drawable/top_middle"
+        app:layout_constraintBottom_toTopOf="@id/btn_S"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@id/status_text"
+        app:layout_constraintEnd_toStartOf="@id/btn_R"
+        app:layout_constraintStart_toEndOf="@id/btn_L"
+        app:layout_constraintWidth_percent="0.35" />
+
+    <ImageButton
+        android:id="@+id/btn_S"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="35dp"
+        android:background="@drawable/btn_shape"
+        android:src="@drawable/bot_middle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/btn_R"
+        app:layout_constraintStart_toEndOf="@id/btn_L"
+        app:layout_constraintTop_toBottomOf="@id/btn_W"
+        app:layout_constraintWidth_percent="0.35" />
+
+    <ImageButton
+        android:id="@+id/btn_L"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="35dp"
+        android:background="@drawable/btn_shape"
+        android:src="@drawable/left_middle"
+        app:layout_constraintBottom_toTopOf="@id/btn_S"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/btn_R"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_W"
+        app:layout_constraintWidth_percent="0.35" />
+
+    <ImageButton
+        android:id="@+id/btn_R"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="35dp"
+        android:background="@drawable/btn_shape"
+        android:src="@drawable/right_middle"
+        app:layout_constraintBottom_toTopOf="@id/btn_S"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_L"
+        app:layout_constraintTop_toBottomOf="@id/btn_W"
+        app:layout_constraintWidth_percent="0.35" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
