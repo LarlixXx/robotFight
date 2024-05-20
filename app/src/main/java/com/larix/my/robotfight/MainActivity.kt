@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         //1 - black 2 - green 3 - blue 4 - grey
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://postman-echo.com/get?api=api_26952954eb652c3e797cf74b8e7b29bc9f447212&status=Forw&id=1")
+            .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
