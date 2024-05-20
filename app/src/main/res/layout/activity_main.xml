@@ -20,6 +20,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:id="@+id/streamView"
+        app:layout_constraintTop_toBottomOf="@id/status_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_W"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.3"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+        <WebView
+            android:id="@+id/stream"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/btn_W"
@@ -30,10 +46,10 @@
         android:src="@drawable/top_middle"
         app:layout_constraintBottom_toTopOf="@id/btn_S"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toBottomOf="@id/status_text"
+        app:layout_constraintTop_toBottomOf="@id/streamView"
         app:layout_constraintEnd_toStartOf="@id/btn_R"
         app:layout_constraintStart_toEndOf="@id/btn_L"
-        app:layout_constraintWidth_percent="0.35" />
+        app:layout_constraintWidth_percent="0.3" />
 
     <ImageButton
         android:id="@+id/btn_S"
@@ -47,7 +63,7 @@
         app:layout_constraintEnd_toStartOf="@id/btn_R"
         app:layout_constraintStart_toEndOf="@id/btn_L"
         app:layout_constraintTop_toBottomOf="@id/btn_W"
-        app:layout_constraintWidth_percent="0.35" />
+        app:layout_constraintWidth_percent="0.3" />
 
     <ImageButton
         android:id="@+id/btn_L"
@@ -61,7 +77,7 @@
         app:layout_constraintEnd_toStartOf="@id/btn_R"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_W"
-        app:layout_constraintWidth_percent="0.35" />
+        app:layout_constraintWidth_percent="0.3" />
 
     <ImageButton
         android:id="@+id/btn_R"
@@ -75,6 +91,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_L"
         app:layout_constraintTop_toBottomOf="@id/btn_W"
-        app:layout_constraintWidth_percent="0.35" />
+        app:layout_constraintWidth_percent="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
