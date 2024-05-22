@@ -1,11 +1,10 @@
 package com.larix.my.robotfight
 
-import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.GET
+
 
 interface ApiService {
-    @POST("path/to/endpoint")
-    fun postRequest(@Body body: Map<String, Any>): Call<ResponseBody>
+    @GET("facts")
+    fun getFacts(): Call<List<Fact>>
 }
