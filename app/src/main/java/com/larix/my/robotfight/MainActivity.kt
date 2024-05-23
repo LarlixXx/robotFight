@@ -6,10 +6,6 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.larix.my.robotfight.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +16,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var service:ApiService
+    private lateinit var api:String
+    private lateinit var id:String
+
+
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,41 +32,29 @@ class MainActivity : AppCompatActivity() {
         binding.stream.setInitialScale(150)
 
         val arg = intent.extras
-        val id = arg?.get("yourId")
-        val api = "26952954eb652c3e797cf74b8e7b29bc9f447212"
-        val url = "https://robot-fight.ru/"
-        val statusW = "Forw"
-        val statusB = "Back"
-        val statusR = "Right"
-        val statusL = "Left"
-        val statuss = "Stop"
+        id = arg?.get("yourId").toString()
 
-        //1 - black 2 - green 3 - blue 4 - grey
+        api = "api_26952954eb652c3e797cf74b8e7b29bc9f447212"
+        val url = "https://robot-fight.ru/"
+        val stepForward = "Forw"
+        val stepBack = "Back"
+        val stepRight = "Right"
+        val stepLeft = "Left"
+        val stop = "Stop"
+//        val black = 1
+//        val green = 2
+//        val blue = 3
+//        val grey = 4
+
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://cat-fact.herokuapp.com/")
+            .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val service = retrofit.create(ApiService::class.java)
+        service = retrofit.create(ApiService::class.java)
 
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val repos = service.getFacts()
-            repos.enqueue(object :Callback<List<Fact>>{
-                override fun onResponse(
-                    call: Call<List<Fact>>,
-                    response: Response<List<Fact>>,
-                ) {
-                    println("!!!!!!!!${response.body()?.get(0)?.status}")
-                }
-
-                override fun onFailure(call: Call<List<Fact>>, t: Throwable) {
-                    println("!!!!!!!!!error: ")
-                }
-
-            })
-        }
 
 
 
@@ -74,11 +63,59 @@ class MainActivity : AppCompatActivity() {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 when (event?.action) {
                     MotionEvent.ACTION_DOWN -> {
-
+                        drive(stepForward)
                     }
 
                     MotionEvent.ACTION_UP -> {
+                        drive(stop)
+                    }
 
+                }
+
+                return v?.onTouchEvent(event) ?: true
+            }
+        })
+        binding.btnL.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        drive(stepLeft)
+                    }
+
+                    MotionEvent.ACTION_UP -> {
+                        drive(stop)
+                    }
+
+                }
+
+                return v?.onTouchEvent(event) ?: true
+            }
+        })
+        binding.btnR.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        drive(stepRight)
+                    }
+
+                    MotionEvent.ACTION_UP -> {
+                        drive(stop)
+                    }
+
+                }
+
+                return v?.onTouchEvent(event) ?: true
+            }
+        })
+        binding.btnS.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        drive(stepBack)
+                    }
+
+                    MotionEvent.ACTION_UP -> {
+                        drive(stop)
                     }
 
                 }
@@ -87,6 +124,24 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    fun drive(step: String) {
+
+        val repos = service.getFacts3(RobotRequest(api = api,status = step,id = id))
+        repos.enqueue(object : Callback<List<DataRequest>> {
+            override fun onResponse(
+                call: Call<List<DataRequest>>,
+                response: Response<List<DataRequest>>,
+            ) {
+                println("!!!!!!!!${response.body()?.get(0)}")
+            }
+
+            override fun onFailure(call: Call<List<DataRequest>>, t: Throwable) {
+                println("!!!!!!!!!error: ")
+            }
+
+        })
 
     }
 }
