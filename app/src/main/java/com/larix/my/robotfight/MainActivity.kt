@@ -42,10 +42,20 @@ class MainActivity : AppCompatActivity() {
         val stepRight = "Right"
         val stepLeft = "Left"
         val stop = "Stop"
-//        val black = 1
-//        val green = 2
-//        val blue = 3
-//        val grey = 4
+
+        fun carColor(id: String) =
+            when (id) {
+                "1" -> "Black"
+                "2" -> "Green"
+                "3" -> "Blue"
+                "4" -> "Grey"
+                else -> {
+                    "Unknown"
+                }
+            }
+
+        binding.statusText.text = "Your car is ${carColor(id)}"
+
 
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -55,9 +65,6 @@ class MainActivity : AppCompatActivity() {
                 .client(okHttpClient).build()
 
         service = retrofit.create(ApiService::class.java)
-
-
-
 
 
 

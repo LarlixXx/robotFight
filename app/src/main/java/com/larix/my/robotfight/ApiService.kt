@@ -11,8 +11,8 @@ interface ApiService {
     @POST("api/robots/update.php")
     @FormUrlEncoded
     fun getFacts4(
-        @Field("api") api:String,
-        @Field("status") status:String,
+        @Field("api") api: String,
+        @Field("status") status: String,
         @Field("id") id: String,
     ): Call<String>
 
