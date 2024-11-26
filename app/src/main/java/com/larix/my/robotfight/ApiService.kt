@@ -7,6 +7,11 @@ import retrofit2.http.POST
 
 
 interface ApiService {
+    @POST("api/interface/get_user_data.php")
+    @FormUrlEncoded
+    fun getName(
+        @Field("user_name") user_name:String
+    ): Call<String>
 
     @POST("api/robots/update.php")
     @FormUrlEncoded

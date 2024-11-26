@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.larix.my.robotfight.LoginActivity.Companion.user_name
 import com.larix.my.robotfight.databinding.ActivityMainBinding
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var service: ApiService
     private lateinit var api: String
     private lateinit var id: String
+
+    val userId = user_name
 
 
     @SuppressLint("ClickableViewAccessibility")
