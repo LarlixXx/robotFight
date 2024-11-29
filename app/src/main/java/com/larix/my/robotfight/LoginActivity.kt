@@ -64,18 +64,16 @@ class LoginActivity : AppCompatActivity() {
 
     fun findName(name: String) {
         val repos = service.getName(user_name=name)
-        repos.enqueue(object : Callback<String> {
-            override fun onResponse(
-                call: Call<String>,
-                response: Response<String>,
-            ) {
+        repos.enqueue(object : Callback<Name> {
 
-                println("!!!!!!!!${response.body()?.get(0)}")
+
+            override fun onResponse(call: Call<Name>, response: Response<Name>) {
+                findViewById<TextView>(R.id.qweqweqwe).text = response.body()?.user_name ?: "guest"
+                println("!!!!!!!!${response.body()}")
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                println("!!!!!!!!!error: ")
-
+            override fun onFailure(call: Call<Name>, t: Throwable) {
+                println("!!!!!!!!!error: ${call} ")
             }
 
         })
